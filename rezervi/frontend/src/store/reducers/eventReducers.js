@@ -41,7 +41,7 @@ import {
   EVENT_LATEST_FAIL
 } from '../constants/eventConstants'
 
-export const EventListReducer = (state = {events: []}, action) => {
+export const eventListReducer = (state = {events: []}, action) => {
   switch (action.type) {
     case EVENT_LIST_REQUEST:
       return {
@@ -65,7 +65,7 @@ export const EventListReducer = (state = {events: []}, action) => {
   }
 }
 
-export const EventListByRatingReducer = (state = {events: []}, action) => {
+export const eventListByRatingReducer = (state = {events: []}, action) => {
   switch (action.type) {
     case EVENT_LIST_BY_RATING_REQUEST:
       return {
@@ -89,7 +89,7 @@ export const EventListByRatingReducer = (state = {events: []}, action) => {
   }
 }
 
-export const EventListByNewestReducer = (state = {events: []}, action) => {
+export const eventListByNewestReducer = (state = {events: []}, action) => {
   switch (action.type) {
     case EVENT_LIST_BY_NEWEST_REQUEST:
       return {
@@ -113,7 +113,7 @@ export const EventListByNewestReducer = (state = {events: []}, action) => {
   }
 }
 
-export const EventDetailsReducer = (state = {event: {reviews: []}}, action) => {
+export const eventDetailsReducer = (state = {event: {reviews: []}}, action) => {
   switch (action.type) {
     case EVENT_DETAILS_REQUEST:
       return {
@@ -135,7 +135,7 @@ export const EventDetailsReducer = (state = {event: {reviews: []}}, action) => {
   }
 }
 
-export const EventDeleteReducer = (state = {}, action) => {
+export const eventDeleteReducer = (state = {}, action) => {
   switch (action.type) {
     case EVENT_DELETE_REQUEST:
       return {
@@ -156,7 +156,7 @@ export const EventDeleteReducer = (state = {}, action) => {
   }
 }
 
-export const EventCreateReducer = (state = {}, action) => {
+export const eventCreateReducer = (state = {}, action) => {
   switch (action.type) {
     case EVENT_CREATE_REQUEST:
       return {
@@ -180,7 +180,7 @@ export const EventCreateReducer = (state = {}, action) => {
   }
 }
 
-export const EventUpdateReducer = (state = {event: {}}, action) => {
+export const eventUpdateReducer = (state = {event: {}}, action) => {
   switch (action.type) {
     case EVENT_UPDATE_REQUEST:
       return {
@@ -204,7 +204,7 @@ export const EventUpdateReducer = (state = {event: {}}, action) => {
   }
 }
 
-export const EvetCreateReviewReducer = (state = {}, action) => {
+export const eventCreateReviewReducer = (state = {}, action) => {
   switch (action.type) {
     case EVENT_CREATE_REVIEW_REQUEST:
       return {
@@ -227,7 +227,7 @@ export const EvetCreateReviewReducer = (state = {}, action) => {
   }
 }
 
-export const EventUpdateReviewReducer = (state = {}, action) => {
+export const eventUpdateReviewReducer = (state = {}, action) => {
   switch (action.type) {
     case EVENT_UPDATE_REVIEW_REQUEST:
       return {
@@ -250,7 +250,7 @@ export const EventUpdateReviewReducer = (state = {}, action) => {
   }
 }
 
-export const EventDeleteReviewReducer = (state = {}, action) => {
+export const eventDeleteReviewReducer = (state = {}, action) => {
   switch (action.type) {
     case EVENT_DELETE_REVIEW_REQUEST:
       return {
@@ -271,7 +271,7 @@ export const EventDeleteReviewReducer = (state = {}, action) => {
   }
 }
 
-export const EventTopRatedReducer = (state = {EVENTs: []}, action) => {
+export const eventTopRatedReducer = (state = {EVENTs: []}, action) => {
   switch (action.type) {
     case EVENT_TOP_REQUEST:
       return {
@@ -293,7 +293,7 @@ export const EventTopRatedReducer = (state = {EVENTs: []}, action) => {
   }
 }
 
-export const EventLatestReducer = (state = {events: []}, action) => {
+export const eventLatestReducer = (state = {events: []}, action) => {
   switch (action.type) {
     case EVENT_LATEST_REQUEST:
       return {
