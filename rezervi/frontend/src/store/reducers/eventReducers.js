@@ -1,88 +1,61 @@
 import {
-  ORDER_CREATE_REQUEST,
-  ORDER_CREATE_SUCCESS,
-  ORDER_CREATE_FAIL,
-  ORDER_DETAILS_REQUEST,
-  ORDER_DETAILS_SUCCESS,
-  ORDER_DETAILS_FAIL,
-  ORDER_DELETE_REQUEST,
-  ORDER_DELETE_SUCCESS,
-  ORDER_DELETE_FAIL,
-  ORDER_MY_LIST_REQUEST,
-  ORDER_MY_LIST_SUCCESS,
-  ORDER_MY_LIST_FAIL,
-  ORDER_MY_LIST_RESET,
-  ORDER_MY_LIST_BY_NEWEST_REQUEST,
-  ORDER_MY_LIST_BY_NEWEST_SUCCESS,
-  ORDER_MY_LIST_BY_NEWEST_FAIL,
-  ORDER_MY_LIST_BY_NEWEST_RESET,
-  ORDER_MY_LIST_BY_OLDEST_REQUEST,
-  ORDER_MY_LIST_BY_OLDEST_SUCCESS,
-  ORDER_MY_LIST_BY_OLDEST_FAIL,
-  ORDER_MY_LIST_BY_OLDEST_RESET,
-  ORDER_MY_LIST_BY_PRICE_REQUEST,
-  ORDER_MY_LIST_BY_PRICE_SUCCESS,
-  ORDER_MY_LIST_BY_PRICE_FAIL,
-  ORDER_MY_LIST_BY_PRICE_RESET,
-  ORDER_MY_LIST_BY_LATEST_REQUEST,
-  ORDER_MY_LIST_BY_LATEST_SUCCESS,
-  ORDER_MY_LIST_BY_LATEST_FAIL,
-  ORDER_MY_LIST_BY_LATEST_RESET,
-  ORDER_LIST_REQUEST,
-  ORDER_LIST_SUCCESS,
-  ORDER_LIST_FAIL,
-  ORDER_LIST_RESET,
-  ORDER_LIST_INCONFIRMED_REQUEST,
-  ORDER_LIST_INCONFIRMED_SUCCESS,
-  ORDER_LIST_INCONFIRMED_FAIL,
-  ORDER_LIST_INCONFIRMED_RESET,
-  ORDER_LIST_CONFIRMED_REQUEST,
-  ORDER_LIST_CONFIRMED_SUCCESS,
-  ORDER_LIST_CONFIRMED_FAIL,
-  ORDER_LIST_CONFIRMED_RESET,
-  ORDER_LIST_BY_NEWEST_REQUEST,
-  ORDER_LIST_BY_NEWEST_SUCCESS,
-  ORDER_LIST_BY_NEWEST_FAIL,
-  ORDER_LIST_BY_NEWEST_RESET,
-  ORDER_LIST_BY_OLDEST_REQUEST,
-  ORDER_LIST_BY_OLDEST_SUCCESS,
-  ORDER_LIST_BY_OLDEST_FAIL,
-  ORDER_LIST_BY_OLDEST_RESET,
-  ORDER_LIST_PAID_REQUEST,
-  ORDER_LIST_PAID_SUCCESS,
-  ORDER_LIST_PAID_FAIL,
-  ORDER_LIST_PAID_RESET,
-  ORDER_LIST_DELIVERED_REQUEST,
-  ORDER_LIST_DELIVERED_SUCCESS,
-  ORDER_LIST_DELIVERED_FAIL,
-  ORDER_LIST_DELIVERED_RESET,
-  ORDER_CONFIRM_REQUEST,
-  ORDER_CONFIRM_SUCCESS,
-  ORDER_CONFIRM_FAIL,
-  ORDER_CONFIRM_RESET,
-  ORDER_PAY_REQUEST,
-  ORDER_PAY_SUCCESS,
-  ORDER_PAY_FAIL,
-  ORDER_PAY_RESET,
-  ORDER_DELIVER_REQUEST,
-  ORDER_DELIVER_SUCCESS,
-  ORDER_DELIVER_FAIL,
-  ORDER_DELIVER_RESET
-} from '../constants/orderConstants'
+  EVENT_LIST_REQUEST,
+  EVENT_LIST_SUCCESS,
+  EVENT_LIST_FAIL,
+  EVENT_LIST_BY_RATING_REQUEST,
+  EVENT_LIST_BY_RATING_SUCCESS,
+  EVENT_LIST_BY_RATING_FAIL,
+  EVENT_LIST_BY_NEWEST_REQUEST,
+  EVENT_LIST_BY_NEWEST_SUCCESS,
+  EVENT_LIST_BY_NEWEST_FAIL,
+  EVENT_DETAILS_REQUEST,
+  EVENT_DETAILS_SUCCESS,
+  EVENT_DETAILS_FAIL,
+  EVENT_DELETE_REQUEST,
+  EVENT_DELETE_SUCCESS,
+  EVENT_DELETE_FAIL,
+  EVENT_CREATE_REQUEST,
+  EVENT_CREATE_SUCCESS,
+  EVENT_CREATE_FAIL,
+  EVENT_CREATE_RESET,
+  EVENT_UPDATE_REQUEST,
+  EVENT_UPDATE_SUCCESS,
+  EVENT_UPDATE_FAIL,
+  EVENT_UPDATE_RESET,
+  EVENT_CREATE_REVIEW_REQUEST,
+  EVENT_CREATE_REVIEW_SUCCESS,
+  EVENT_CREATE_REVIEW_FAIL,
+  EVENT_CREATE_REVIEW_RESET,
+  EVENT_UPDATE_REVIEW_REQUEST,
+  EVENT_UPDATE_REVIEW_SUCCESS,
+  EVENT_UPDATE_REVIEW_FAIL,
+  EVENT_UPDATE_REVIEW_RESET,
+  EVENT_DELETE_REVIEW_REQUEST,
+  EVENT_DELETE_REVIEW_SUCCESS,
+  EVENT_DELETE_REVIEW_FAIL,
+  EVENT_TOP_REQUEST,
+  EVENT_TOP_SUCCESS,
+  EVENT_TOP_FAIL,
+  EVENT_LATEST_REQUEST,
+  EVENT_LATEST_SUCCESS,
+  EVENT_LATEST_FAIL
+} from '../constants/eventConstants'
 
-export const orderCreateReducer = (state = {}, action) => {
+export const EventListReducer = (state = {events: []}, action) => {
   switch (action.type) {
-    case ORDER_CREATE_REQUEST:
+    case EVENT_LIST_REQUEST:
       return {
-        loading: true
+        loading: true,
+        events: []
       }
-    case ORDER_CREATE_SUCCESS:
+    case EVENT_LIST_SUCCESS:
       return {
         loading: false,
-        success: true,
-        order: action.payload
+        page: action.payload.page,
+        pages: action.payload.pages,
+        events: action.payload.events
       }
-    case ORDER_CREATE_FAIL:
+    case EVENT_LIST_FAIL:
       return {
         loading: false,
         error: action.payload
@@ -92,19 +65,67 @@ export const orderCreateReducer = (state = {}, action) => {
   }
 }
 
-export const orderDetailsReducer = (state = {orderItems: [], shippingAddress: {}}, action) => {
+export const EventListByRatingReducer = (state = {events: []}, action) => {
   switch (action.type) {
-    case ORDER_DETAILS_REQUEST:
+    case EVENT_LIST_BY_RATING_REQUEST:
+      return {
+        loading: true,
+        events: []
+      }
+    case EVENT_LIST_BY_RATING_SUCCESS:
+      return {
+        loading: false,
+        page: action.payload.page,
+        pages: action.payload.pages,
+        events: action.payload.events
+      }
+    case EVENT_LIST_BY_RATING_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      }
+    default:
+      return state
+  }
+}
+
+export const EventListByNewestReducer = (state = {events: []}, action) => {
+  switch (action.type) {
+    case EVENT_LIST_BY_NEWEST_REQUEST:
+      return {
+        loading: true,
+        events: []
+      }
+    case EVENT_LIST_BY_NEWEST_SUCCESS:
+      return {
+        loading: false,
+        page: action.payload.page,
+        pages: action.payload.pages,
+        EVENTs: action.payload.events
+      }
+    case EVENT_LIST_BY_NEWEST_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      }
+    default:
+      return state
+  }
+}
+
+export const EventDetailsReducer = (state = {event: {reviews: []}}, action) => {
+  switch (action.type) {
+    case EVENT_DETAILS_REQUEST:
       return {
         ...state,
         loading: true
       }
-    case ORDER_DETAILS_SUCCESS:
+    case EVENT_DETAILS_SUCCESS:
       return {
         loading: false,
-        order: action.payload
+        event: action.payload
       }
-    case ORDER_DETAILS_FAIL:
+    case EVENT_DETAILS_FAIL:
       return {
         loading: false,
         error: action.payload
@@ -114,18 +135,18 @@ export const orderDetailsReducer = (state = {orderItems: [], shippingAddress: {}
   }
 }
 
-export const orderDeleteReducer = (state = {}, action) => {
+export const EventDeleteReducer = (state = {}, action) => {
   switch (action.type) {
-    case ORDER_DELETE_REQUEST:
+    case EVENT_DELETE_REQUEST:
       return {
         loading: true
       }
-    case ORDER_DELETE_SUCCESS:
+    case EVENT_DELETE_SUCCESS:
       return {
         loading: false,
         success: true
       }
-    case ORDER_DELETE_FAIL:
+    case EVENT_DELETE_FAIL:
       return {
         loading: false,
         error: action.payload
@@ -135,392 +156,160 @@ export const orderDeleteReducer = (state = {}, action) => {
   }
 }
 
-export const orderMyListReducer = (state = {orders: []}, action) => {
+export const EventCreateReducer = (state = {}, action) => {
   switch (action.type) {
-    case ORDER_MY_LIST_REQUEST:
+    case EVENT_CREATE_REQUEST:
       return {
         loading: true
       }
-    case ORDER_MY_LIST_SUCCESS:
+    case EVENT_CREATE_SUCCESS:
       return {
         loading: false,
-        page: action.payload.page,
-        pages: action.payload.pages,
-        orders: action.payload.orders
+        success: true,
+        event: action.payload
       }
-    case ORDER_MY_LIST_FAIL:
+    case EVENT_CREATE_FAIL:
       return {
         loading: false,
         error: action.payload
       }
-    case ORDER_MY_LIST_RESET:
-      return {
-        orders: []
-      }
-    default:
-      return state
-  }
-}
-
-export const orderMyListByNewestReducer = (state = {orders: []}, action) => {
-  switch (action.type) {
-    case ORDER_MY_LIST_BY_NEWEST_REQUEST:
-      return {
-        loading: true
-      }
-    case ORDER_MY_LIST_BY_NEWEST_SUCCESS:
-      return {
-        loading: false,
-        page: action.payload.page,
-        pages: action.payload.pages,
-        orders: action.payload.orders
-      }
-    case ORDER_MY_LIST_BY_NEWEST_FAIL:
-      return {
-        loading: false,
-        error: action.payload
-      }
-    case ORDER_MY_LIST_BY_NEWEST_RESET:
-      return {
-        orders: []
-      }
-    default:
-      return state
-  }
-}
-
-export const orderMyListByOldestReducer = (state = {orders: []}, action) => {
-  switch (action.type) {
-    case ORDER_MY_LIST_BY_OLDEST_REQUEST:
-      return {
-        loading: true
-      }
-    case ORDER_MY_LIST_BY_OLDEST_SUCCESS:
-      return {
-        loading: false,
-        page: action.payload.page,
-        pages: action.payload.pages,
-        orders: action.payload.orders
-      }
-    case ORDER_MY_LIST_BY_OLDEST_FAIL:
-      return {
-        loading: false,
-        error: action.payload
-      }
-    case ORDER_MY_LIST_BY_OLDEST_RESET:
-      return {
-        orders: []
-      }
-    default:
-      return state
-  }
-}
-
-export const orderMyListByPriceReducer = (state = {orders: []}, action) => {
-  switch (action.type) {
-    case ORDER_MY_LIST_BY_PRICE_REQUEST:
-      return {
-        loading: true
-      }
-    case ORDER_MY_LIST_BY_PRICE_SUCCESS:
-      return {
-        loading: false,
-        page: action.payload.page,
-        pages: action.payload.pages,
-        orders: action.payload.orders
-      }
-    case ORDER_MY_LIST_BY_PRICE_FAIL:
-      return {
-        loading: false,
-        error: action.payload
-      }
-    case ORDER_MY_LIST_BY_PRICE_RESET:
-      return {
-        orders: []
-      }
-    default:
-      return state
-  }
-}
-
-export const orderMyListLatestReducer = (state = {orders: []}, action) => {
-  switch (action.type) {
-    case ORDER_MY_LIST_BY_LATEST_REQUEST:
-      return {
-        loading: true
-      }
-    case ORDER_MY_LIST_BY_LATEST_SUCCESS:
-      return {
-        loading: false,
-        orders: action.payload
-      }
-    case ORDER_MY_LIST_BY_LATEST_FAIL:
-      return {
-        loading: false,
-        error: action.payload
-      }
-    case ORDER_MY_LIST_BY_LATEST_RESET:
-      return {
-        orders: []
-      }
-    default:
-      return state
-  }
-}
-
-export const orderListReducer = (state = {orders: []}, action) => {
-  switch (action.type) {
-    case ORDER_LIST_REQUEST:
-      return {
-        loading: true
-      }
-    case ORDER_LIST_SUCCESS:
-      return {
-        loading: false,
-        page: action.payload.page,
-        pages: action.payload.pages,
-        orders: action.payload.orders
-      }
-    case ORDER_LIST_FAIL:
-      return {
-        loading: false,
-        error: action.payload
-      }
-    case ORDER_LIST_RESET:
-      return {
-        orders: []
-      }
-    default:
-      return state
-  }
-}
-
-export const orderListInconfirmedReducer = (state = {orders: []}, action) => {
-  switch (action.type) {
-    case ORDER_LIST_INCONFIRMED_REQUEST:
-      return {
-        loading: true
-      }
-    case ORDER_LIST_INCONFIRMED_SUCCESS:
-      return {
-        loading: false,
-        page: action.payload.page,
-        pages: action.payload.pages,
-        orders: action.payload.orders
-      }
-    case ORDER_LIST_INCONFIRMED_FAIL:
-      return {
-        loading: false,
-        error: action.payload
-      }
-    case ORDER_LIST_INCONFIRMED_RESET:
-      return {
-        orders: []
-      }
-    default:
-      return state
-  }
-}
-
-export const orderListConfirmedReducer = (state = {orders: []}, action) => {
-  switch (action.type) {
-    case ORDER_LIST_CONFIRMED_REQUEST:
-      return {
-        loading: true
-      }
-    case ORDER_LIST_CONFIRMED_SUCCESS:
-      return {
-        loading: false,
-        page: action.payload.page,
-        pages: action.payload.pages,
-        orders: action.payload.orders
-      }
-    case ORDER_LIST_CONFIRMED_FAIL:
-      return {
-        loading: false,
-        error: action.payload
-      }
-    case ORDER_LIST_CONFIRMED_RESET:
-      return {
-        orders: []
-      }
-    default:
-      return state
-  }
-}
-
-export const orderListByNewestReducer = (state = {orders: []}, action) => {
-  switch (action.type) {
-    case ORDER_LIST_BY_NEWEST_REQUEST:
-      return {
-        loading: true
-      }
-    case ORDER_LIST_BY_NEWEST_SUCCESS:
-      return {
-        loading: false,
-        page: action.payload.page,
-        pages: action.payload.pages,
-        orders: action.payload.orders
-      }
-    case ORDER_LIST_BY_NEWEST_FAIL:
-      return {
-        loading: false,
-        error: action.payload
-      }
-    case ORDER_LIST_BY_NEWEST_RESET:
-      return {
-        orders: []
-      }
-    default:
-      return state
-  }
-}
-
-export const orderListByOldestReducer = (state = {orders: []}, action) => {
-  switch (action.type) {
-    case ORDER_LIST_BY_OLDEST_REQUEST:
-      return {
-        loading: true
-      }
-    case ORDER_LIST_BY_OLDEST_SUCCESS:
-      return {
-        loading: false,
-        page: action.payload.page,
-        pages: action.payload.pages,
-        orders: action.payload.orders
-      }
-    case ORDER_LIST_BY_OLDEST_FAIL:
-      return {
-        loading: false,
-        error: action.payload
-      }
-    case ORDER_LIST_BY_OLDEST_RESET:
-      return {
-        orders: []
-      }
-    default:
-      return state
-  }
-}
-
-export const orderListPaidReducer = (state = {orders: []}, action) => {
-  switch (action.type) {
-    case ORDER_LIST_PAID_REQUEST:
-      return {
-        loading: true
-      }
-    case ORDER_LIST_PAID_SUCCESS:
-      return {
-        loading: false,
-        page: action.payload.page,
-        pages: action.payload.pages,
-        orders: action.payload.orders
-      }
-    case ORDER_LIST_PAID_FAIL:
-      return {
-        loading: false,
-        error: action.payload
-      }
-    case ORDER_LIST_PAID_RESET:
-      return {
-        orders: []
-      }
-    default:
-      return state
-  }
-}
-
-export const orderListDeliveredReducer = (state = {orders: []}, action) => {
-  switch (action.type) {
-    case ORDER_LIST_DELIVERED_REQUEST:
-      return {
-        loading: true
-      }
-    case ORDER_LIST_DELIVERED_SUCCESS:
-      return {
-        loading: false,
-        page: action.payload.page,
-        pages: action.payload.pages,
-        orders: action.payload.orders
-      }
-    case ORDER_LIST_DELIVERED_FAIL:
-      return {
-        loading: false,
-        error: action.payload
-      }
-    case ORDER_LIST_DELIVERED_RESET:
-      return {
-        orders: []
-      }
-    default:
-      return state
-  }
-}
-
-export const orderConfirmReducer = (state = {}, action) => {
-  switch (action.type) {
-    case ORDER_CONFIRM_REQUEST:
-      return {
-        loading: true
-      }
-    case ORDER_CONFIRM_SUCCESS:
-      return {
-        loading: false,
-        success: true
-      }
-    case ORDER_CONFIRM_FAIL:
-      return {
-        loading: false,
-        error: action.payload
-      }
-    case ORDER_CONFIRM_RESET:
+    case EVENT_CREATE_RESET:
       return {}
     default:
       return state
   }
 }
 
-export const orderPayReducer = (state = {}, action) => {
+export const EventUpdateReducer = (state = {event: {}}, action) => {
   switch (action.type) {
-    case ORDER_PAY_REQUEST:
+    case EVENT_UPDATE_REQUEST:
       return {
         loading: true
       }
-    case ORDER_PAY_SUCCESS:
+    case EVENT_UPDATE_SUCCESS:
       return {
         loading: false,
-        success: true
+        success: true,
+        event: action.payload
       }
-    case ORDER_PAY_FAIL:
+    case EVENT_UPDATE_FAIL:
       return {
         loading: false,
         error: action.payload
       }
-    case ORDER_PAY_RESET:
+    case EVENT_UPDATE_RESET:
       return {}
     default:
       return state
   }
 }
 
-export const orderDeliverReducer = (state = {}, action) => {
+export const EvetCreateReviewReducer = (state = {}, action) => {
   switch (action.type) {
-    case ORDER_DELIVER_REQUEST:
+    case EVENT_CREATE_REVIEW_REQUEST:
       return {
         loading: true
       }
-    case ORDER_DELIVER_SUCCESS:
+    case EVENT_CREATE_REVIEW_SUCCESS:
       return {
         loading: false,
         success: true
       }
-    case ORDER_DELIVER_FAIL:
+    case EVENT_CREATE_REVIEW_FAIL:
       return {
         loading: false,
         error: action.payload
       }
-    case ORDER_DELIVER_RESET:
+    case EVENT_CREATE_REVIEW_RESET:
       return {}
+    default:
+      return state
+  }
+}
+
+export const EventUpdateReviewReducer = (state = {}, action) => {
+  switch (action.type) {
+    case EVENT_UPDATE_REVIEW_REQUEST:
+      return {
+        loading: true
+      }
+    case EVENT_UPDATE_REVIEW_SUCCESS:
+      return {
+        loading: false,
+        success: true
+      }
+    case EVENT_UPDATE_REVIEW_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      }
+    case EVENT_UPDATE_REVIEW_RESET:
+      return {}
+    default:
+      return state
+  }
+}
+
+export const EventDeleteReviewReducer = (state = {}, action) => {
+  switch (action.type) {
+    case EVENT_DELETE_REVIEW_REQUEST:
+      return {
+        loading: true
+      }
+    case EVENT_DELETE_REVIEW_SUCCESS:
+      return {
+        loading: false,
+        success: true
+      }
+    case EVENT_DELETE_REVIEW_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      }
+    default:
+      return state
+  }
+}
+
+export const EventTopRatedReducer = (state = {EVENTs: []}, action) => {
+  switch (action.type) {
+    case EVENT_TOP_REQUEST:
+      return {
+        loading: true,
+        EVENTs: []
+      }
+    case EVENT_TOP_SUCCESS:
+      return {
+        loading: false,
+        EVENTs: action.payload
+      }
+    case EVENT_TOP_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      }
+    default:
+      return state
+  }
+}
+
+export const EventLatestReducer = (state = {events: []}, action) => {
+  switch (action.type) {
+    case EVENT_LATEST_REQUEST:
+      return {
+        loading: true,
+        events: []
+      }
+    case EVENT_LATEST_SUCCESS:
+      return {
+        loading: false,
+        events: action.payload
+      }
+    case EVENT_LATEST_FAIL:
+      return {
+        loading: false,
+        error: action.payload
+      }
     default:
       return state
   }
