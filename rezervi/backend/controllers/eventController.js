@@ -169,8 +169,7 @@ const createEvent = asyncHandler(async (req, res) => {
     name,
     image,
     host,
-    dates,
-    times,
+    time,
     description,
     category,
     place,
@@ -183,8 +182,7 @@ const createEvent = asyncHandler(async (req, res) => {
     name,
     image,
     host,
-    dates,
-    times,
+    time,
     description,
     category,
     place,
@@ -201,7 +199,6 @@ const updateEvent = asyncHandler(async (req, res) => {
     name,
     image,
     host,
-    dates,
     time,
     description,
     category,
@@ -216,7 +213,6 @@ const updateEvent = asyncHandler(async (req, res) => {
     event.name = name
     event.image = image
     event.host = host
-    event.dates = dates
     event.time = time
     event.description = description
     event.category = category

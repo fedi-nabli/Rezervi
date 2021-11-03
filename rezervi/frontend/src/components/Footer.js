@@ -9,7 +9,7 @@ function Footer() {
         <Row>
           <Col className="text-center py-3">
             Copyright &copy; Rezervi 2021 <br />
-            <Link to='/'>termes of uses and conditions</Link>
+            <Link to='/'>termes of use and conditions</Link>
           </Col>
         </Row>
       </Container>

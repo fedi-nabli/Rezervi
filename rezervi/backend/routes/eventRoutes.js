@@ -1,5 +1,5 @@
 import express from 'express'
-import {protect, supervisor, admin} from '../middleware/authMiddleware.js'
+import {protect, supervisor} from '../middleware/authMiddleware.js'
 import {
   getEvents,
   getEventsByRating,
@@ -24,6 +24,6 @@ router.get('/newest', getEventsByNewest)
 router.get('/new', getNewestEvents)
 router.get('/top', getTopEvents)
 router.route('/:id/reviews').post(protect, createEventReview).delete(protect, deleteEventReview).put(protect, updateEventReview)
-router.route('/:id').get(getEventById).delete(protect, admin, deleteEvent).put(protect, supervisor, updateEvent)
+router.route('/:id').get(getEventById).delete(protect, supervisor, deleteEvent).put(protect, supervisor, updateEvent)
 
 export default router

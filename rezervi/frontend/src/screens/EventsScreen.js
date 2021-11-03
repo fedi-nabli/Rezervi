@@ -4,25 +4,29 @@ import { Row, Col } from 'react-bootstrap'
 import Event from '../components/Event'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
+import Paginate from '../components/Paginate'
 import Meta from '../components/Meta'
-import {listLatestEvents} from '../store/actions/eventActions'
-import EventtCarousel from '../components/EventCarousel'
+import {listEvents} from '../store/actions/eventActions'
 
-function HomeScreen({match}) {
+function EventsScreen({match}) {
+  const keyword = match.params.keyword
+  const pageNumber = match.params.pageNumber || 1
+  
   const dispatch = useDispatch()
 
-  const eventLatest = useSelector(state => state.eventLatest)
-  const {loading, error, events} = eventLatest
+  const eventList = useSelector(state => state.eventList)
+  const {loading, error, events, pages, page} = eventList
   
   useEffect(() => {
-    dispatch(listLatestEvents())
-  }, [dispatch])
+    dispatch(listEvents(keyword, '', '', pageNumber))
+  }, [dispatch, keyword, pageNumber])
   
   return (
     <div className='event'>
-      <Meta />
-      <EventtCarousel />
-      <h1 style={{marginTop: 50}}>Latest Events</h1> 
+      <Meta
+        title='Events'
+      />
+      <h1>All Events</h1> 
       {loading ? <Loader /> : error ? <Message variant="danger">{error}</Message> : (
         <>
           <Row>
@@ -32,10 +36,15 @@ function HomeScreen({match}) {
               </Col>
             ))}
           </Row>
+          <Paginate
+            pages={pages}
+            page={page}
+            keyword={keyword ? keyword : ''}
+          />
         </>
       )}
     </div>
   )
 }
 
-export default HomeScreen
+export default EventsScreen

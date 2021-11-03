@@ -1,7 +1,9 @@
 import React from 'react'
+import {Route} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {LinkContainer} from 'react-router-bootstrap'
 import {Navbar, Nav, NavDropdown} from 'react-bootstrap'
+import SearchBox from './SearchBox'
 import {logout} from '../store/actions/userActions'
 
 function Header() {
@@ -15,7 +17,7 @@ function Header() {
 
   return (
     <header>
-      <Navbar variant='dark' expand='lg' collapseOnSelect>
+      <Navbar bg='light' variant='light' expand='lg' collapseOnSelect>
         <LinkContainer to='/'>
           <Navbar.Brand>
             <img src='/images/logo.png' alt='Rezervi' style={{width: 150}} />
@@ -23,15 +25,19 @@ function Header() {
         </LinkContainer>
         <Navbar.Toggle aria-controls='navbar' />
         <Navbar.Collapse id='navbar'>
+          <Route render={({history}) => <SearchBox history={history} />} />
           <Nav className='ml-auto'>
             <LinkContainer to='/'>
-              <Nav.Link>Home</Nav.Link>
+              <Nav.Link><i className='fas fa-home'></i> Home</Nav.Link>
             </LinkContainer>
             <LinkContainer to='/events'>
-              <Nav.Link>Events</Nav.Link>
+              <Nav.Link><i className='fas fa-calendar-day'></i> Events</Nav.Link>
             </LinkContainer>
             <LinkContainer to='/about'>
-              <Nav.Link>About Us</Nav.Link>
+              <Nav.Link><i className='fas fa-address-card'></i> About Us</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to='/contact'>
+              <Nav.Link><i className='fas fa-phone-square-alt'></i> Contact Us</Nav.Link>
             </LinkContainer>
             <LinkContainer to='/cart'>
               <Nav.Link><i className='fas fa-shopping-cart'></i> Cart</Nav.Link>
@@ -39,9 +45,9 @@ function Header() {
             {userInfo ? (
               <NavDropdown title={userInfo.name} id='username'>
                 <LinkContainer to='/profile'>
-                  <NavDropdown.Item>Profile</NavDropdown.Item>
+                  <NavDropdown.Item><i className='fas fa-user'></i> Profile</NavDropdown.Item>
                 </LinkContainer>
-                <NavDropdown.Item onClick={logoutHandler}>Logout</NavDropdown.Item>
+                <NavDropdown.Item onClick={logoutHandler}><i className='fas fa-sign-out-alt'></i> Logout</NavDropdown.Item>
               </NavDropdown>
             ) : (
               <LinkContainer to='/login'>
@@ -51,23 +57,23 @@ function Header() {
             {userInfo && userInfo.isSupervisor && !userInfo.isAdmin && (
               <NavDropdown title='Supervisor' id='supervisormenu'>
                 <LinkContainer to='/supervisor/eventlist'>
-                  <NavDropdown.Item>Events</NavDropdown.Item>
+                  <NavDropdown.Item><i className='fas fa-calendar-day'></i> Events</NavDropdown.Item>
                 </LinkContainer>
                 <LinkContainer to='/supervisor/orderlist'>
-                  <NavDropdown.Item>Orders</NavDropdown.Item>
+                  <NavDropdown.Item><i className='fas fa-file-invoice-dollar'></i> Orders</NavDropdown.Item>
                 </LinkContainer>
               </NavDropdown>
             )}
             {userInfo && userInfo.isAdmin && (
               <NavDropdown title='Admin' id='adminmenu'>
                 <LinkContainer to='/admin/userlist'>
-                  <NavDropdown.Item>Users</NavDropdown.Item>
+                  <NavDropdown.Item><i className='fas fa-user'></i> Users</NavDropdown.Item>
                 </LinkContainer>
                 <LinkContainer to='/admin/eventlist'>
-                  <NavDropdown.Item>Events</NavDropdown.Item>
+                  <NavDropdown.Item><i className='fas fa-calendar-day'></i> Events</NavDropdown.Item>
                 </LinkContainer>
                 <LinkContainer to='/admin/orderlist'>
-                  <NavDropdown.Item>Orders</NavDropdown.Item>
+                  <NavDropdown.Item><i className='fas fa-file-invoice-dollar'></i> Orders</NavDropdown.Item>
                 </LinkContainer>
               </NavDropdown>
             )}

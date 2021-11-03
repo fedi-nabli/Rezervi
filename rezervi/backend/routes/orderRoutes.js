@@ -1,5 +1,5 @@
 import express from 'express'
-import {protect, admin} from '../middleware/authMiddleware.js'
+import {protect, admin, supervisor} from '../middleware/authMiddleware.js'
 import {
   addOrderItems,
   getOrderById,
@@ -16,10 +16,10 @@ import {
 } from '../controllers/orderController.js'
 const router = express.Router()
 
-router.route('/').post(protect, addOrderItems).get(protect, admin, getOrders)
-router.route('/newest').get(protect, admin, getOrdersByNewest)
-router.route('/oldest').get(protect, admin, getOrdersByOldest)
-router.route('/price').get(protect, admin, getOrdersByPrice)
+router.route('/').post(protect, addOrderItems).get(protect, supervisor, getOrders)
+router.route('/newest').get(protect, supervisor, getOrdersByNewest)
+router.route('/oldest').get(protect, supervisor, getOrdersByOldest)
+router.route('/price').get(protect, supervisor, getOrdersByPrice)
 router.route('/myorders').get(protect, getMyOrders)
 router.route('/myorders/newest').get(protect, getMyOrdersByNewest)
 router.route('/myorders/oldest').get(protect, getMyOrdersByOldest)

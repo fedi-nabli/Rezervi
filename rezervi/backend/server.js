@@ -19,13 +19,15 @@ app.use('/api/events', eventRoutes)
 app.use('/api/orders', orderRoutes)
 app.use('/api/upload', uploadRoutes)
 
+app.get('/api/config/paypal', (req, res) => res.send(process.env.PAYPAL_CLIENT_ID))
+
 const __dirname = path.resolve()
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '/frontend/dist')))
+  app.use(express.static(path.join(__dirname, '/frontend/build')))
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend', 'dist', 'index.html'))
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
   })
 } else {
   app.get('/', (req, res) => {
