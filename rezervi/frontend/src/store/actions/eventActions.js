@@ -301,7 +301,7 @@ export const listLatestEvents = (limit = '') => async (dispatch) => {
     dispatch({
       type: EVENT_LATEST_REQUEST
     })
-    const {data} = await axios.get(`/api/events/latest?limit=${limit}`)
+    const {data} = await axios.get(`/api/events/new?limit=${limit}`)
     dispatch({
       type: EVENT_LATEST_SUCCESS,
       payload: data

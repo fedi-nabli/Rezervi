@@ -1,5 +1,4 @@
 import React from 'react'
-import {Route} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {LinkContainer} from 'react-router-bootstrap'
 import {Navbar, Nav, NavDropdown} from 'react-bootstrap'
@@ -49,7 +48,7 @@ function Header() {
                 <Nav.Link><i className='fas fa-user'></i> Sign In</Nav.Link>
               </LinkContainer>
             )}
-            {userInfo && userInfo.isSupervisor && (
+            {userInfo && userInfo.isSupervisor && !userInfo.isAdmin && (
               <NavDropdown title='Supervisor' id='supervisormenu'>
                 <LinkContainer to='/supervisor/eventlist'>
                   <NavDropdown.Item>Events</NavDropdown.Item>

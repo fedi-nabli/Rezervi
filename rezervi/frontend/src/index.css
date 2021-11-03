@@ -11,7 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-header {
+header, footer {
   background-color: #7D1935 !important;
 }
 
@@ -20,4 +20,18 @@ header {
   padding-bottom: 12px;
   padding-right: 2rem;
   padding-left: 2rem;
+}
+
+main {
+  min-height: 80vh;
+}
+
+footer {
+  color: white;
+}
+
+footer a {
+  margin-top: 4px;
+  text-decoration: underline;
+  color: #00C1D4;
 }
