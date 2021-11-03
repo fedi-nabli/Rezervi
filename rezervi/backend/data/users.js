@@ -22,7 +22,7 @@ const users = [
     email: 'mednassim@gmail.com',
     password: bcrypt.hashSync('123456', 10),
     phoneNumber: 29669935,
-    isSupervisor: false,
+    isSupervisor: true,
     isAdmin: false
   }
 ]

@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #DDDDDD;
 }
 
 code {
@@ -24,6 +25,7 @@ header, footer {
 
 main {
   min-height: 80vh;
+  margin-top: 2rem;
 }
 
 footer {
